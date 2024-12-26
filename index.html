@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Website</title>
+    <style>
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #ffffff;
+            color: #333;
+        }
+    
+        header, footer {
+            text-align: center;
+            color: white;
+            padding: 0vw;
+        }
+        .navbar1 img {
+            width: 100vw;
+            margin-top: -1vw;
+            margin-left: -2vw;
+            display: flex;
+            height: 19vw;
+        }
+        .navbara {
+            width: 100%;
+            justify-content: center;
+            display: none;
+        }
+        .navbara img {
+            width: 30vw;
+            justify-content: center;
+            position: relative;
+            margin-left: -1vw;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.2vw 0;
+            text-align: center;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin: 0.2vw;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1vw 1vw;
+            display: block;
+            background-color: #FFA500;
+            border-radius: 1vw;
+            font-size: 1vw;
+            width: 7.5vw;
+        }
+        
+        nav ul li a:hover {
+            background-color: #3498db;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .navba {
+            display: flex;
+            position: absolute;
+            width: 35vw;
+            margin-top: -15vw;
+            z-index: 5;
+        }
+        .navbar2 {
+        display: flex;
+        position: absolute;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: -0.5vw;
+        }
+        .navbar3 img {
+        width: 15vw;
+        margin-top: -3vw;
+        margin-left: 41vw;
+        z-index: 5;
+        }
+        .navbar4 {
+        position: absolute;
+        justify-content: space-between;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: 56vw;
+        }
+        
+        header {
+        text-align: center;
+        color: white;
+        padding: 1vw;
+        }
+        
+        header h1 {
+        color: #ffffff;
+        background-color: #1abc9c;
+        margin-top: -6vw;
+        padding: 1vw 1vw;
+        font-size: 3vw;
+        }
+        
+        
+        /* Ensure button stays on top */
+        .menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color: rgb(241, 107, 5);
+            cursor: pointer;
+            z-index: 1000; /* Ensure button stays on top */
+            display: none; /* Hidden by default on larger screens */
+        }
+        
+        /* Responsive design for small screens */
+        @media (max-width: 740px) {
+            .navba {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Hidden by default */
+                height: 100vw;
+                width: 40vw;
+                background-color: #2c3e50;
+                transition: right 0.3s ease;
+                z-index: 999; /* Menu below button */
+                flex-direction: column;
+                display: inline;
+            }
+
+            .navbar1 img {
+                width: 100%;
+                margin-top: -2vw;
+                display: none;
+                height: 19vw;
+            }
+
+            .navbara {
+                display: flex;
+                z-index: 100;
+            }
+            .navbara img{
+                z-index: 100;
+            }
+        
+            .navba.active {
+                right: 0; /* Slide into view when active */
+            }
+        
+            .navbar2 {
+                width: 42vw;
+                margin-top: 25vw;
+            }
+        
+            .navbar4 {
+                margin-top: 60vw;
+                margin-left: 0vw;
+            }
+
+            nav ul li a {
+                font-size: 3vw;
+                width: 30vw;
+                text-align: center;
+                color: white;
+                text-decoration: none;
+                margin: 1vw 1vw;
+            }
+        
+            nav ul li a:hover {
+                background-color: #3498db;
+            }
+        
+            /* Hide the school logo on small screens */
+            .navbar3 {
+                display: none;
+            }
+            .navbar3 img {
+                display: none;
+            }
+        
+            /* Show the toggle button on small screens */
+            .menu-toggle {
+                display: block;
+            }
+            header h1 {
+                margin-top: 2vw;
+            }
+        }
+        
+        /* Keep the logo visible for screens larger than 540px */
+        @media (min-width: 740px) {
+            .navbara img {
+                display: block;
+                z-index: 100;
+            }
+            .navbar3 {
+                display: block;
+                
+            }
+            .navbar3 img{
+                display: block;
+                
+            }
+        }
+        
+        /* Hero Section Styles */
+        .hero {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            height: 39vw;
+            color: #fff;
+            margin: 1vw;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2vw;
+            margin-top: -5.5vw;
+            z-index: 1; /* Ensure this is higher than the overlay */
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        .hero .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+            z-index: 2; /* Ensure this is lower than the buttons */
+        }
+
+        .hero h1, .hero h2, .hero p {
+            z-index: 3;
+            margin: 0vw;
+            padding: 0.5vw 0;
+        }
+
+        .hero h1 {
+            font-size: 3vw;
+            margin-top: 3vw;
+            font-weight: bold;
+            color: aqua;
+        }
+
+        .hero h2 {
+            font-size: 3vw;
+            margin-bottom: 1vw;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 2.5vw;
+            color: #fff;
+        }
+
+        .overlay button {
+            padding: 1vw 2vw;
+            margin: 1vw;
+            font-size: 2vw;
+            background-color: #ff6600;
+            border: none;
+            color: white;
+            border-radius: 1vw;
+            cursor: pointer;
+            pointer-events: auto; /* Ensure buttons are clickable */
+            position: relative;
+            z-index: 4; /* Ensure this is higher than the overlay */
+            transition: background 0.3s ease;
+        }
+
+        .hero button:hover {
+            background-color: #e65c00;
+        }
+
+        .hero img {
+            max-width: 100%;
+            margin-bottom: 2vw;
+        }
+
+        .announcement {
+            font-weight: bold;
+            margin-top: 3vw;
+            background-color: #ffcc00;
+            padding: 1vw;
+            font-size: 4vw;
+            border-radius: 0.5vw;
+        }
+
+        blockquote {
+            font-style: italic;
+            margin: 20px 0;
+            font-size: 2vw;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            transition: transform 0.2s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 10px;
+            z-index: 2;
+        }
+
+        .scroll-indicator p {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .scroll-indicator .arrow-down {
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* News & Updates Section Styles */
+        .news-updates {
+            background-color: #f1f1f1;
+            padding: 3vw 2vw;
+            border-radius: 1vw;
+            box-shadow: 0vw 1vw 2vw rgba(0, 0, 0, 0.1);
+        }
+
+        .news-updates h2 {
+            text-align: center;
+            font-size: 2.5vw;
+            margin-bottom: 0.5vw;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #news-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1vw;
+            justify-content: center;
+        }
+
+        .update {
+            background-color: #ffffff;
+            border-radius: 2vw;
+            overflow: hidden;
+            width: 30vw;
+            box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .update:hover {
+            transform: translateY(-1vw);
+        }
+
+        .update img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .update h3 {
+            font-size: 3vw;
+            margin: 2vw 0 1vw;
+            color: #222;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .update p {
+            font-size: 2.5vw;
+            color: #555;
+            padding: 0 1.5vw 2vw;
+            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .update h4 {
+            font-size: 16px;
+            color: #ff6600;
+            margin-top: 15px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .update {
+                width: 100%;
+            }
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        #countdown span {
+            font-weight: bold;
+            color: #ff6600;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #ff6600;
+        }
+
+        /* General Styles for About Section */
+        .about {
+            padding: 0.1vw 0.1vw;
+            background-color: #e6f2ff;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        .about h2 {
+            font-size: 3vw;
+            text-align: center;
+            color: #004d99;
+            margin-bottom: 0.2vw;
+        }
+
+        /* Mission and Vision */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2vw;
+            margin-bottom: 0.2vw;
+        }
+
+        .mission, .vision {
+            padding: 0.2vw;
+            background-color: #ffffff;
+            border-radius: 2vw;
+            box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.1);
+        }
+
+        .mission h3, .vision h3 {
+            font-size: 2.5vw;
+            text-align: center;
+            color: #004d99;
+            margin-bottom: 0vw;
+        }
+
+        .mission p, .vision p {
+            font-size: 2.3vw;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Core Values */
+        .core-values {
+            margin: 0.1vw 0;
+        }
+
+        .core-values h3 {
+            font-size: 3.5vw;
+            color: #004d99;
+            margin-bottom: 0vw;
+            text-align: center;
+        }
+
+        .core-values ul {
+            list-style: none;
+            padding: 0.3vw;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .core-values li {
+            font-size: 2.5vw;
+            margin: 1vw 2vw;
+            color: #333;
+        }
+
+        /* History, Approach, Leadership, Facilities, Achievements */
+        .history, .approach, .faculty, .facilities, .achievements {
+            background-color: #ffffff;
+            border-radius: 1vw;
+            padding: 0.2vw;
+            margin-bottom: 1vw;
+            box-shadow: 0 1vw 0.1vw rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 3vw;
+            color: #004d99;
+            margin-bottom: 0.2vw;
+        }
+
+        p {
+            font-size: 2.3vw;
+            color: #666;
+        }
+
+        /* Call to Action */
+        .cta {
+            background-color: #004d99;
+            padding: 0.1vw;
+            text-align: center;
+            border-radius: 2vw;
+            color: white;
+        }
+
+        .cta h3 {
+            color: aqua;
+            font-size: 2vw;
+        }
+
+        .cta p {
+            color: white;
+            font-size: 2.5vw;
+            margin-bottom: 0.5vw;
+        }
+
+        .cta-button {
+            font-size: 2vw;
+            width: 15vw;
+            color: #004d99;
+            background-color: white;
+            padding: 0.5vw 1vw;
+            margin: 1vw;
+            border-radius: 1vw;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #e6f2ff;
+            color: #004d99;
+            transform: translateY(-0.5vw);
+        }
+
+        /* Nursery Programs Section Styles */
+        .nursery-programs {
+            background-color: #f1f8e9;  /* Light green background for a soft and inviting look */
+            padding: 1vw 1vw;
+            gap: 1vw;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
+            margin-bottom: 1vw;
+            align-content: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nursery-programs h2 {
+            text-align: center;
+            font-size: 2vw;
+            color: #388e3c;  /* Deep green for headings */
+            margin-bottom: 1vw;
+            font-weight: 700;
+        }
+
+        .nursery-programs .programs-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 1vw;
+        }
+
+        .nursery-programs .program {
+            background-color: #ffffff;  /* White background for program blocks */
+            padding: 1vw;
+            width: 29vw;  /* Fixed width for each program block */
+            border-radius: 1vw;
+            box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .nursery-programs .program:hover {
+            transform: translateY(-1vw);
+            box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.2);
+        }
+
+        .nursery-programs .program h3 {
+            font-size: 3vw;
+            color: #4caf50;  /* Green for subheadings */
+            margin-bottom: 0.5vw;
+            font-weight: 600;
+        }
+
+        .nursery-programs .program p {
+            font-size: 1.5vw;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .nursery-programs .program i {
+            font-size: 1.5vw;
+            color: #ff4081;  /* Pink for icons to add visual appeal */
+            margin-bottom: 1.5vw;
+        }
+
+        .nursery-programs .program p.testimonial {
+            font-style: italic;
+            color: #388e3c;
+            background-color: #e8f5e9;
+            border-left: 1vw solid #4caf50;
+            padding-left: 0;
+            margin-top: 1vw;
+        }
+
+        @media (max-width: 540px) {
+            .nursery-programs {
+                padding: 0.5vw 0.5vw;
+                width: 100%;
+            }
+
+            .nursery-programs .program p {
+                font-size: 3vw;
+                color: #555;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            .nursery-programs h2 {
+                font-size: 2vw;
+            }
+
+            .nursery-programs .programs-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nursery-programs .program {
+                width: 100%;  /* Make program blocks take up more space on smaller screens */
+                margin-bottom: 1vw;
+            }
+        }
+
+        .events {
+            padding: 5px;
+            gap: 2vw;
+            background-color: #f9f9f9;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .events h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .event-preview {
+            background-color: #fff;
+            padding: 15px;
+            width: 40%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-preview h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .event-preview p {
+            color: #555;
+            font-size: 1em;
+            margin: 5px 0;
+        }
+
+        .event-preview a.event-link {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .event-preview a.event-link:hover {
+            background-color: #0056b3;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5vw 2vw;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .testimonials blockquote {
+            font-size: 2vw;
+            font-style: italic;
+            color: #777;
+            margin: 4vw auto;
+        }
+
+        .testimonials footer {
+            font-size: 1.8vw;
+            color: #283593;
+        }
+
+        /* Extracurricular Section */
+        .extracurricular {
+            padding: 5vw 2vw;
+            background-color: #eeeeee;
+        }
+
+        .extracurricular h2 {
+            text-align: center;
+            font-size: 3vw;
+            margin-bottom: 3vw;
+        }
+
+        .extracurricular .activities {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .extracurricular .activities div {
+            width: 30%;
+            background-color: white;
+            padding: 2vw;
+            margin: 1vw;
+            box-shadow: 0px 1vw 2vw rgba(0, 0, 0, 0.1);
+            border-radius: 2vw;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #232F3E;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 5vw 2vw;
+            text-align: center;
+        }
+
+        footer .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2vw;
+            margin: 0 auto;
+        }
+
+        footer .footer-container div {
+            display: flex;
+            flex-direction: column;
+            gap: 1vw;
+        }
+
+        footer h3 {
+            font-size: 2.5vw;
+            margin-bottom: 1vw;
+            color: #F39C12;
+            text-transform: uppercase;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li a {
+            color: #BDC3C7;
+            font-size: 1.5vw;
+            text-decoration: none;
+            padding: 2vw 0;
+            transition: color 0.3s ease-in-out;
+        }
+
+        footer ul li a:hover {
+            color: #F39C12;
+        }
+
+        footer .footer-social a {
+            color: #BDC3C7;
+            font-size: 2vw;
+/* Hero Section Styles */
+.hero {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 50vw;
+    color: #fff;
+    margin: 1vw;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw;
+    margin-top: -5.5vw;
+    position: relative;
+    z-index: -1;
+    transition: background-image 1.5s ease-in-out;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+    z-index: 1; /* Ensure this is lower than the buttons */
+}
+
+.hero h1, .hero h2, .hero p {
+    z-index: 2;
+    margin: 0vw;
+    padding: 0.5vw 0;
+}
+
+.hero h1 {
+    font-size: 3vw;
+    margin-top: 3vw;
+    font-weight: bold;
+    color: aqua;
+}
+
+.hero h2 {
+    font-size: 3vw;
+    margin-bottom: 1vw;
+    color: #fff;
+}
+
+.hero p {
+    font-size: 2.5vw;
+    color: #fff;
+}
+
+.overlay button {
+    padding: 1vw 2vw;
+    margin: 1vw;
+    font-size: 2vw;
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    border-radius: 1vw;
+    cursor: pointer;
+    pointer-events: auto; /* Ensure buttons are clickable */
+    position: relative;
+    z-index: 199; /* Ensure this is higher than the overlay */
+    transition: background 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #e65c00;
+}
+
+.announcement {
+    font-weight: bold;
+    margin-top: 3vw;
+    background-color: #ffcc00;
+    padding: 1vw;
+    font-size: 4vw;
+    border-radius: 0.5vw;
+}
+
+/* Ensure the buttons are not overlapped */
+.not {
+    position: relative;
+    z-index: 200; /* Higher than the overlay */
+}
+
+    </style>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <button class="menu-toggle">&#9776;</button> <!-- Menu button (hamburger icon) -->
+        <nav class="navbar1">
+            <img src="photo/HEADER.png" alt="Header Image">
+        </nav>
+
+        <div class="navba">
+            <!-- Navigation Bar -->
+            <nav class="navbar2">
+                <ul>
+                    
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="student-portal.html">child info</a></li>
+                </ul>
+            </nav>
+            <nav class="navbar3">
+                <ul class="navbar3">
+                    <li><img src="photo/logo.png" alt="School Logo"></li>
+                </ul>
+            </nav>
+            <nav class="navbar4">
+                <ul>
+                    
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="newsletter.html">Newsletter</a></li>
+                    <li><a href="extracurricular.html">Extracurricular</a></li>
+                    <li><a href="contact.html">contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <nav class="navbara">
+            <img src="photo/logo.png">
+        </nav>
+    </header>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="overlay">
+        <h1>WELCOME TO ST PETERS CHURCH OF UGANDA NURSERY SCHOOL KAMULI-KIREKA</h1>
+        <h2>Committed to Early Childhood Development and Growth</h2>
+        <p><strong>Providing quality education for a brighter future.</strong></p>
+        <p>"Nurturing the leaders of tomorrow."</p>
+        <div class="not">
+            <a href="apply.html" ><button>Apply Now</button></a>
+            <a href="learnmore.html" ><button>Learn More</button></a>
+        </div>
+        <p class="announcement">🎉 Open Day:3rd February 2025!Registration is in progress. 🎉</p>
+        <p class="announcement">🎉 From Monday to Friday starting from 8am to 4pm 🎉</p>
+        <p>Over 500+ successful Top class graduates and growing!</p>
+    </div>
+</section>
+
+
+<!-- About Section -->
+<section class="about">
+    <h2>About Us</h2>
+    
+    <!-- Mission and Vision -->
+    <div class="mission-vision">
+        <div class="mission">
+            <h3>Our Mission</h3>
+            <p>To instil discipline and Quality Education</p>
+        </div>
+        <div class="vision">
+            <h3>School Motto</h3>
+            <p>The fear of the lord is the beginning of wisdom.</p>
+        </div>
+    </div>
+
+    <!-- Core Values -->
+    
+    <div class="core-values">
+        <h3>Core Values</h3>
+        <ul>
+            <li>God fearing</li>
+            <li>Respect</li>
+            <li>Excellence</li>
+            <li>Responsibility</li>
+            <li>Leadership skills</li>
+        </ul>
+    </div>
+
+    <!-- History and Background -->
+    <div class="mission-vision">
+    <div class="history">
+        <h3>Our History</h3>
+        <p>The school begun in 1993, And was founded by ST Peters church of Uganda Community.</p>
+    </div>
+
+    <!-- Educational Approach -->
+    <div class="approach">
+        <h3>Educational Approach</h3>
+        <p>We believe in hands-on learning, fostering curiosity, and building critical thinking skills in our learners and co-curricular activities.</p>
+    </div>
+
+    <!-- Leadership & Faculty -->
+    <div class="faculty">
+        <h3>Leadership & Faculty</h3>
+        <p>Our staff consists of experienced and passionate educators committed to providing a high-quality education to every learner.</p>
+    </div>
+    <!-- Achievements -->
+    <div class="achievements">
+        <h3>Our Achievements</h3>
+        <p>We are proud to be recognized for excellence in education and the success of our learners in both academics and extracurricular activities.</p>
+    </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta">
+        <h3>Join Our School Community</h3>
+        <p>Schedule a visit or contact us to learn more about our educational offerings.</p>
+        <a href="contact.html" class="cta-button">Contact Us</a>
+        <a href="schedule.html" class="cta-button">Schedule a Tour</a>
+    </div>
+</section>
+<!-- News & Updates Section -->
+<section class="news-updates">
+    <h2>News & Updates</h2>
+    <div id="news-container"></div>
+</section>
+
+<!-- Call to Action for Admissions Section -->
+<section class="cta">
+    <h2>Interested in Joining Us?</h2>
+    <a href="learn.html"><button>Learn More</button></a>
+</section>
+
+
+<!-- Academics Preview Section -->
+<h2 style="width: 100%; text-align: center; margin-bottom: 20px; font-size: 3vw; margin: 0 auto; text-align: center;">Our Nursery Programs</h2>
+<section class="nursery-programs">
+    <div class="program">
+        <h3>Age Groups & Classes</h3>
+        <p>We offer classes for children aged 3 to 5 years, with programs designed to meet the developmental needs of each age group.</p>
+    </div>
+
+    <div class="program">
+        <h3>Curriculum Overview</h3>
+        <p>Our curriculum focuses on play-based learning, early literacy, social skills, and creative arts, ensuring a well-rounded foundation for all children.</p>
+    </div>
+
+    <div class="program">
+        <h3>Learning Areas</h3>
+        <p>We emphasize key developmental areas, including Language Development, Cognitive Skills, Motor Skills, Socialization, and Emotional Growth.</p>
+    </div>
+
+    <div class="program">
+        <h3>Daily Activities</h3>
+        <p>Children engage in activities such as storytime, arts and crafts, outdoor play, and sensory exploration to develop their creativity and motor skills.</p>
+    </div>
+
+    <div class="program">
+        <h3>Teacher Qualifications</h3>
+        <p>Our teachers are certified in early childhood education and have extensive experience working with young children to nurture their growth and learning.</p>
+    </div>
+
+    <div class="program">
+        <h3>Parent Involvement</h3>
+        <p>We welcome parents to actively participate in classroom activities and special events, fostering a strong home-school connection.</p>
+    </div>
+
+    <div class="program">
+        <h3>Learning Through Play</h3>
+        <p>We believe that children learn best through hands-on, interactive play, which nurtures creativity, curiosity, and problem-solving skills.</p>
+    </div>
+
+    <div class="program">
+        <h3>Safety and Security</h3>
+        <p>Your child's safety is our priority. Our school is equipped with secure entry systems and a safe, child-friendly environment.</p>
+    </div>
+
+    <div class="program">
+        <h3>Facilities and Resources</h3>
+        <p>Our school features a spacious outdoor play area, a dedicated art studio, and sensory areas to support children's development in a creative setting.</p>
+    </div>
+
+    <div class="program">
+        <h3>Special Programs</h3>
+        <p>We host education tours ,swimming ,ballet dance ,cultural day, graduations and concerts to expand learning beyond the classroom, providing children with real-world experiences.</p>
+    </div>
+
+    <div class="program">
+        <h3>Testimonials</h3>
+        <p>"Our daughter loves her time here! The teachers are so caring, and we see her growth every day." - Mother of Kataike Patricia</p>
+    </div>
+
+    <div class="program">
+        <h3>Enrollment Information</h3>
+        <p>Enrollment is open for the upcoming school year. Please contact us to schedule a visit and learn more about our programs.</p>
+    </div>
+</section>
+
+
+<!-- Upcoming Events Section -->
+<h2 style="font-size: 3vw; text-align: center; margin-bottom: 20px; margin: 0 auto;">Upcoming Events</h2>
+<section class="events">
+    
+    <!-- Event 1 -->
+    <div class="event-preview">
+        <h3>Parent-Teacher Meeting</h3>
+        <p><strong>Date:</strong> December 15th, 2024</p>
+        <p><strong>Location:</strong> School Auditorium</p>
+        <p>Join us for a parent-teacher meeting to discuss your child's progress and school activities.</p>
+        <a href="#" class="event-link">Register Now</a>
+    </div>
+
+    <!-- Event 2 -->
+    <div class="event-preview">
+        <h3>Cultural Festival</h3>
+        <p><strong>Date:</strong> January 20th, 2025</p>
+        <p><strong>Location:</strong> School Grounds</p>
+        <p>Celebrate the diverse cultures at our annual Cultural Festival, featuring performances and food stalls.</p>
+        <a href="#" class="event-link">Learn More</a>
+    </div>
+
+    <!-- Event 3 -->
+    <div class="event-preview">
+        <h3>Sports Day</h3>
+        <p><strong>Date:</strong> February 10th, 2025</p>
+        <p><strong>Location:</strong> School Playground</p>
+        <p>Join us for a fun-filled Sports Day with a variety of exciting activities and competitions!</p>
+        <a href="#" class="event-link">Register for Participation</a>
+    </div>
+</section>
+
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <h2>What Our Students and Parents Say</h2>
+    <blockquote>
+        "The best decision we made was choosing this school for our children."
+        <footer>- Parent</footer>
+    </blockquote>
+    <blockquote>
+        "This school has transformed my learning experience!"
+        <footer>- Student</footer>
+    </blockquote>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <!-- Social Media Links -->
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <div>
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            </div>
+        </div>
+
+        <!-- Quick Navigation Links -->
+        <div class="footer-nav">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Programs</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@school.com</p>
+            <p>Phone: +256 752593003</p>
+            <p>Address: kamuli-kireka, Uganda</p>
+        </div>
+
+        <!-- Legal Links -->
+        <div class="footer-legal">
+            <h3>Legal</h3>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Accessibility</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="footer-newsletter">
+        <h3>Subscribe to Our Newsletter</h3>
+        <form action="#" method="POST">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- Language Selector -->
+    <div id="google_translate_element" class="footer-language"></div>
+
+    <!-- Back to Top Button -->
+    <div class="footer-back-to-top">
+        <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to Top</button>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright">
+        <p>&copy; 2024 School Name. All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+<!-- Add the Font Awesome link for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+<script>
+    
+    // Countdown Timer
+    function countdown() {
+        const endDate = new Date("January 20, 2025 00:00:00").getTime();
+        const now = new Date().getTime();
+        const timeLeft = endDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+
+        if (timeLeft < 0) {
+            clearInterval(countdownTimer);
+            document.getElementById('countdown').innerHTML = "Event has passed!";
+        }
+    }
+
+    const countdownTimer = setInterval(countdown, 1000);
+
+    // Image Slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.image-slider img');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.display = (i === index) ? 'block' : 'none';
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function previousSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide); // Show the first slide
+        setInterval(nextSlide, 3000); // Auto slide every 3 seconds
+    });
+</script>
+<script>
+    // Image Background Slider
+    const images = [
+        'url("photo/1.png")',
+        'url("photo/2.png")',
+        'url("photo/3.png")',
+        'url("photo/4.png")',
+        // Replace these with actual image paths
+    ];
+
+    let currentImageIndex = 0;
+    const heroSection = document.querySelector('.hero');
+
+    function changeBackground() {
+        // Change background image
+        heroSection.style.backgroundImage = images[currentImageIndex];
+
+        // Update the index
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+    }
+
+    // Set interval to change the background image every 5 seconds
+    setInterval(changeBackground, 5000);
+
+    // Initial background setup
+    changeBackground();  // Call once to set the initial background when the page loads
+</script>
+<script>
+// Sample news data with images
+const newsUpdates = [
+    {
+        category: "program",
+        title: "opening day",
+        description: "The school will be opened on 3rd february 2025.",
+        //image: "images/webinar.jpg" // Add image URL here
+    },
+    {
+        category: "Upcoming Events",
+        title: "meetings",
+        description: "We shall have a general school meeting at the beginning of term.",
+        //image: "images/science-fair.jpg"
+    },
+    {
+        category: "program",
+        title: "school van",
+        description: "The school is having a van that will transport pupils.",
+        //image: "images/webinar.jpg" // Add image URL here
+    }
+    
+];
+
+// Render the news updates dynamically
+const newsContainer = document.getElementById('news-container');
+
+newsUpdates.forEach(update => {
+    const newsDiv = document.createElement('div');
+    newsDiv.classList.add('update');
+    
+    const newsCategory = document.createElement('h4');
+    newsCategory.textContent = update.category;
+    newsDiv.appendChild(newsCategory);
+    
+    const newsTitle = document.createElement('h3');
+    newsTitle.textContent = update.title;
+    newsDiv.appendChild(newsTitle);
+    
+    const newsDescription = document.createElement('p');
+    newsDescription.textContent = update.description;
+    newsDiv.appendChild(newsDescription);
+    
+    // Create image element and append it
+    if (update.image) {
+        const newsImage = document.createElement('img');
+        newsImage.src = update.image;
+        newsImage.alt = update.title;
+        newsDiv.appendChild(newsImage);
+    }
+
+    newsContainer.appendChild(newsDiv);
+});
+
+</script>
+<script>
+    
+
+    // Toggle the mobile menu when the button is clicked
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.navba').classList.toggle('active');
+    });
+    
+        // Initialize Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              
+            }, 'google_translate_element');
+          }
+          const script = document.createElement('script');
+          script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+          document.head.appendChild(script);
+    </script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More | Our School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #0073e6;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .learn-more {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .learn-more h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .learn-more p {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .learn-more-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .learn-item {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .learn-item h3 {
+            font-size: 24px;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+
+        .learn-item ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .learn-item ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .learn-item a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1a237e;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .learn-item a:hover {
+            background-color: #283593;
+        }
+
+        .cta {
+            padding: 50px 20px;
+            background-color: #283593;
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta a {
+            padding: 12px 30px;
+            background-color: #1a237e;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta a:hover {
+            background-color: #0d0f72;
+        }
+
+        footer {
+            background-color: #0073e6;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #f1f1f1;
+        }
+
+        @media (max-width: 768px) {
+            .learn-more-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .learn-item {
+                width: 80%;
+                margin: 15px 0;
+            }
+
+            .cta h2 {
+                font-size: 28px;
+            }
+
+            .cta a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+    <h1>Learn More About Our School</h1>
+</header>
+
+<!-- Learn More Section -->
+<section class="learn-more">
+    <h2>Discover Our Mission and Values</h2>
+    <p> To instil discipline and quality education.</p>
+
+    <div class="learn-more-content">
+        <div class="learn-item">
+            <h3>Our Mission</h3>
+            <p>To instil discipline and quality education.</p>
+        </div>
+        <div class="learn-item">
+            <h3>Why Choose Us?</h3>
+            <ul>
+                <li>Providing a safe, loving, and inclusive environment</li>
+                <li>Supporting the unique needs of each child</li>
+                <li>Preparing children for success in school and beyond</li>
+            </ul>
+        </div>
+        <div class="learn-item">
+            <h3>Get Started Today</h3>
+            <p>Ready to join our school? Explore our admissions process, and find out how you can become part of our community.</p>
+            <a href="apply.html">Apply Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta">
+    <h2>Join Us Today and Shape Your Future</h2>
+    <a href="apply.html">Get Started</a>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2024 Our School. All rights reserved.</p>
+    <p>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Contact</a>
+    </p>
+</footer>
+
+<script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          
+        }, 'google_translate_element');
+      }
+      const script = document.createElement('script');
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.head.appendChild(script);// Add any JavaScript if needed for future functionality (e.g., form validation, interactive elements)
+</script>
+
+</body>
+</html>

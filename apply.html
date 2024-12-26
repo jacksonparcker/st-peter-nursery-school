@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        h2 {
+            font-size: 36px;
+            text-align: center;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .apply-now {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .apply-now h3 {
+            text-align: center;
+            font-size: 24px;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .apply-now p {
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .apply-now form {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr;
+        }
+
+        .apply-now label {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .apply-now input, .apply-now select, .apply-now textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .apply-now input:focus, .apply-now select:focus, .apply-now textarea:focus {
+            border-color: #1a237e;
+        }
+
+        .apply-now button {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .apply-now button:hover {
+            background-color: #0d0f72;
+        }
+
+        .apply-now .note {
+            font-size: 14px;
+            text-align: center;
+            color: #999;
+        }
+
+        .apply-now .note a {
+            color: #1a237e;
+            text-decoration: none;
+        }
+
+        .apply-now .note a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hide the form after submission */
+        .apply-now.submitted {
+            display: none;
+        }
+
+        /* Success Popup */
+        #success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            z-index: 9999;
+        }
+
+        #success-popup button {
+            padding: 10px 20px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #success-popup button:hover {
+            background-color: #0d0f72;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="apply-now" id="apply-now">
+            <h2>Apply Now</h2>
+            <p>Ready to take the first step toward your future? Fill out the application below and join us!</p>
+
+            <form id="applicationForm" action="https://formsubmit.co/jacksonparcker2@gmail.com" method="POST" enctype="multipart/form-data">
+                <!-- FormSubmit settings-->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="about.html">
+                <input type="hidden" name="_subject" value="application for admission!">
+                
+                <h3>Application Form</h3>
+
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <label for="previous-school">Name of Parent:</label>
+                <input type="text" id="previous-school" name="previous-school" placeholder="Enter parents name" required>
+
+                <label for="program">Choose class:</label>
+                <select id="program" name="program" required>
+                    <option value="STEM">Baby</option>
+                    <option value="Arts">Middle</option>
+                    <option value="Humanities">Top</option>
+                </select>
+
+                <label for="statement">Residence:</label>
+                <input id="statement" name="statement" rows="5" placeholder="Place of stay" required>
+
+                <label for="transcripts">Childs immunisation card:</label>
+                <input type="file" id="transcripts" name="transcripts" accept="application/pdf, image/*">
+
+                <label for="id-proof">child passport photo:</label>
+                <input type="file" id="id-proof" name="id-proof" accept="application/pdf, image/*">
+
+                <label for="id-proof1">parents passport photo:</label>
+                <input type="file" id="id-proof1" name="id-proof1" accept="application/pdf, image/*">
+
+                <button type="submit">Submit Application</button>
+            </form>
+
+            <p class="note">By applying, you agree to our <a href="#">Terms & Conditions</a>.</p>
+        </section>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="success-popup">
+        <h3>Your application was submitted successfully!</h3>
+        <p>You will receive a confirmation email shortly.</p>
+        <button onclick="generatePDF()">Download PDF</button>
+    </div>
+
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent default form submission
+            
+            const formData = new FormData(this);
+
+            // Form validation: Check if required fields are filled
+            if (!document.getElementById('full-name').value || 
+                !document.getElementById('dob').value || 
+                !document.getElementById('email').value || 
+                !document.getElementById('phone').value ||
+                !document.getElementById('previous-school').value ||
+                !document.getElementById('program').value || 
+                !document.getElementById('statement').value) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+            
+            // Submit the form to FormSubmit via fetch API
+            fetch('https://formsubmit.co/jacksonparcker2@gmail.com', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success popup
+                    document.getElementById('success-popup').style.display = 'block';
+                } else {
+                    alert('Failed to submit the form. Please try again later.');
+                }
+            })
+            .catch(error => {
+                alert('Error submitting the form. Please try again.');
+                console.error('Error:', error);
+            });
+        });
+
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Set background color for the entire page
+            doc.setFillColor(240, 244, 248);  // Background color
+            doc.rect(0, 0, doc.internal.pageSize.width, doc.internal.pageSize.height, 'F');
+            // Adding school logo (Make sure the logo path is correct)
+            const logo = 'photo/logo.png'; // Ensure the path is correct
+
+            // Adding school logo (Make sure the logo path is correct)
+            // const logo = document.getElementById('school-logo');
+            const logoImg = logo.src;
+
+            // Adding school logo to PDF (commented out for now)
+             doc.addImage(logo, 'PNG', 20, 20, 40, 40);  // Adjust the coordinates and size as needed
+
+            // School Name
+            doc.setFontSize(24);
+            doc.setTextColor(31, 58, 138);
+            doc.text("ST PETER NURSERY SCHOOL", 70, 40);
+
+            // Adding contact details
+            doc.setFontSize(12);
+            doc.setTextColor(255, 255, 255);
+            doc.rect(20, 60, doc.internal.pageSize.width - 40, 40, 'F');  // Background for contact details
+            doc.setTextColor(259, 205, 255);
+            doc.text("Email: admissions@xyzschool.com", 25, 65);
+            doc.text("Phone: +1 (555) 123-4567", 25, 75);
+            doc.text("Fax: +1 (555) 123-4568", 25, 85);
+            doc.text("Address: 123 School St., City, Country", 25, 95);
+
+            // Introduction
+            doc.setFontSize(15);
+            doc.setTextColor(85, 85, 85);
+            doc.text("Welcome to ST PETER NURSERY SCHOOL  of Excellence, where we focus on nurturing young minds for a brighter future. We are pleased to offer admissions for the upcoming academic year. Please fill out the form below to apply for admission to our school.", 20, 110, { maxWidth: 180 });
+
+            // Personal Information Section
+            doc.setFontSize(20);
+            doc.setTextColor(31, 58, 138);
+            doc.text("Personal Information", 20, 140);
+
+            doc.setFontSize(16);
+            doc.setTextColor(51, 51, 51);
+
+            const fullName = document.getElementById("full-name").value;
+            const dob = document.getElementById("dob").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+
+            doc.text("Full Name: " + fullName, 20, 150);
+            doc.text("Date of Birth: " + dob, 20, 160);
+            doc.text("Email Address: " + email, 20, 170);
+            doc.text("Phone Number: " + phone, 20, 180);
+
+            // Admission Requirements Section
+            doc.setFontSize(20);
+            doc.text("Admission Requirements", 20, 200);
+
+            doc.setFontSize(16);
+            doc.text("- Birth certificate (original and copy)", 20, 210);
+            doc.text("- Previous school transcripts", 20, 220);
+            doc.text("- Recent passport-sized photo", 20, 230);
+            doc.text("- Completed application form", 20, 240);
+
+            // Fee Information Section
+            doc.setFontSize(20);
+            doc.text("Fee Information", 20, 260);
+
+            doc.setFontSize(16);
+            doc.text("- Application Fee: 5000shs", 20, 270);
+            doc.text("- School Fee: 200000shs per term", 20, 280);
+            doc.text("- Additional Fees: Library Fee, Sports Fee, Exam Fee", 20, 290);
+
+            // Signature Section
+            doc.setFontSize(20);
+            doc.text("Signature", 20, 310);
+
+            doc.setFontSize(16);
+            const signature = "Parent/Guardian Signature: __________________";
+            doc.text(signature, 20, 320);
+
+            // Save the PDF
+            doc.save("admission-form.pdf");
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              
+            }, 'google_translate_element');
+          }
+          const script = document.createElement('script');
+          script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+          document.head.appendChild(script);
+    </script>
+</body>
+</html>

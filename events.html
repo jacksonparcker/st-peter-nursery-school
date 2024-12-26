@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Calendar - School Website</title>
+    <style>
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #ffffff;
+            color: #333;
+        }
+    
+        header, footer {
+            text-align: center;
+            color: white;
+            padding: 0vw;
+        }
+        .navbar1 img {
+            width: 100vw;
+            margin-top: -1vw;
+            margin-left: -2vw;
+            display: flex;
+            height: 19vw;
+        }
+        .navbara {
+            width: 100%;
+            justify-content: center;
+            display: none;
+        }
+        .navbara img {
+            width: 30vw;
+            justify-content: center;
+            position: relative;
+            margin-left: -1vw;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.2vw 0;
+            text-align: center;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin: 0.2VW;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1vw 1vw;
+            display: block;
+            background-color: #FFA500;
+            border-radius: 1vw;
+            font-size: 1vw;
+            width: 7.5vw;
+        }
+        
+        nav ul li a:hover {
+            background-color: #3498db;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .navba {
+            display: flex;
+            position: absolute;
+            width: 35vw;
+            margin-top: -15vw;
+        }
+        .navbar2 {
+        display: flex;
+        position: absolute;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: -0.5vw;
+        }
+        .navbar3 img {
+        width: 15vw;
+        margin-top: -3vw;
+        margin-left: 41vw;
+        }
+        .navbar4 {
+        position: absolute;
+        justify-content: space-between;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: 56vw;
+        }
+        
+        header {
+        text-align: center;
+        color: white;
+        padding: 1vw;
+        }
+        
+        header h1 {
+        color: #ffffff;
+        background-color: #1abc9c;
+        margin-top: -6vw;
+        padding: 1vw 1vw;
+        font-size: 3vw;
+        }
+        
+        
+        /* Ensure button stays on top */
+        .menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color: rgb(241, 107, 5);
+            cursor: pointer;
+            z-index: 1000; /* Ensure button stays on top */
+            display: none; /* Hidden by default on larger screens */
+        }
+        
+        /* Responsive design for small screens */
+        @media (max-width: 740px) {
+            .navba {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Hidden by default */
+                height: 100vw;
+                width: 40vw;
+                background-color: #2c3e50;
+                transition: right 0.3s ease;
+                z-index: 999; /* Menu below button */
+                flex-direction: column;
+                display: inline;
+            }
+            .navbar1 img {
+                width: 100%;
+                margin-top: -2;
+                display: none;
+                height: 19vw;
+            }
+            .navbara {
+                display: flex;
+            }
+        
+            .navba.active {
+                right: 0; /* Slide into view when active */
+            }
+        
+            .navbar2 {
+                width: 42vw;
+                margin-top: 25vw;
+                }
+        
+            .navbar4 {
+                margin-top: 60vw;
+                margin-left: 0vw;
+                }
+            nav ul li a {
+                font-size: 3vw;
+                width: 30vw;
+                text-align: center;
+                color: white;
+                text-decoration: none;
+                margin: 1vw 1vw;
+            }
+        
+            nav ul li a:hover {
+                background-color: #3498db;
+            }
+        
+            /* Hide the school logo on small screens */
+            .navbar3 {
+                display: none;
+            }
+        
+            /* Show the toggle button on small screens */
+            .menu-toggle {
+                display: block;
+            }
+            header h1 {
+                margin-top: 2vw;
+            }
+            
+        }
+        
+        /* Keep the logo visible for screens larger than 540px */
+        @media (min-width: 740px) {
+            .navbara img {
+                display: block;
+            }
+            .navbar3 {
+                display: block;
+            }
+        }
+        
+        section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-size: 1.8em;
+            color: #333;
+        }
+        .event-list {
+            list-style: none;
+            padding: 0;
+        }
+        .event-list li {
+            background-color: #f0f0f0;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .event-list li strong {
+            color: #007bff;
+            font-size: 1.2em;
+        }
+        footer {
+            background-color: #232F3E;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 5vw 2vw;
+            text-align: center;
+
+        }
+        
+        footer .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2vw;
+            margin: 0 auto;
+        }
+        
+        footer .footer-container div {
+            display: flex;
+            flex-direction: column;
+            gap: 1vw;
+        }
+        
+        footer h3 {
+            font-size: 2.5vw;
+            margin-bottom: 1vw;
+            color: #F39C12;
+            text-transform: uppercase;
+        }
+        
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        footer ul li a {
+            color: #BDC3C7;
+            font-size: 1.5vw;
+            text-decoration: none;
+            padding: 2vw 0;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        footer ul li a:hover {
+            color: #F39C12;
+        }
+        
+        footer .footer-social a {
+            color: #BDC3C7;
+            font-size: 2vw;
+            margin-right: 2vw;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        footer .footer-social a:hover {
+            color: #F39C12;
+        }
+        
+        footer .footer-newsletter input,
+        footer .footer-newsletter button {
+            padding: 1vw 1vw;
+            border-radius: 1vw;
+            border: none;
+            font-size: 2vw;
+            margin-top: 1vw;
+        }
+        
+        footer .footer-newsletter input {
+            width: 100%;
+            margin-bottom: 1vw;
+            background-color: #34495E;
+            color: #fff;
+            border: 1vw solid #7F8C8D;
+        }
+        
+        footer .footer-newsletter button {
+            background-color: #F39C12;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        footer .footer-newsletter button:hover {
+            background-color: #E67E22;
+        }
+        
+        footer .footer-language select {
+            padding: 1vw;
+            border-radius: 1vw;
+            border: 1vw solid #7F8C8D;
+            background-color: #34495E;
+            color: #fff;
+            font-size: 1.5vw;
+            margin-top: 1vw;
+            width: 100%;
+        }
+        
+        footer .footer-back-to-top button {
+            padding: 1vw 2vw;
+            background-color: #F39C12;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2vw;
+            font-size: 2vw;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 1vw;
+        }
+        
+        footer .footer-back-to-top button:hover {
+            background-color: #E67E22;
+        }
+        
+        footer .footer-copyright {
+            margin-top: 2vw;
+            font-size: 2vw;
+            color: #BDC3C7;
+            text-align: center;
+        }
+        
+        footer .footer-copyright a {
+            color: #BDC3C7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        footer .footer-copyright a:hover {
+            color: #F39C12;
+        }
+        
+        @media (max-width: 768px) {
+            footer .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2vw;
+            }
+        
+            footer .footer-newsletter input {
+                width: 100%;
+            }
+        
+            footer .footer-back-to-top button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            footer .footer-container {
+                grid-template-columns: 1fr;
+            }
+        
+            footer .footer-newsletter input,
+            footer .footer-newsletter button,
+            footer .footer-language select {
+                width: 100%;
+            }
+        }
+        .calendar-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .calendar-btn:hover {
+            background-color: #218838;
+        }
+        .calendar {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .calendar th, .calendar td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .calendar th {
+            background-color: #007bff;
+            color: white;
+        }
+        .calendar td {
+            cursor: pointer;
+        }
+        .calendar td:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle">&#9776;</button> <!-- Menu button (hamburger icon) -->
+        <nav class="navbar1">
+            <img src="photo/HEADER.png" alt="Header Image">
+        </nav>
+
+        <div class="navba">
+            <!-- Navigation Bar -->
+            <nav class="navbar2">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                </ul>
+            </nav>
+            <nav class="navbar3">
+                <ul class="navbar3">
+                    <li><img src="photo/logo.png" alt="School Logo"></li>
+                </ul>
+            </nav>
+            <nav class="navbar4">
+                <ul>
+                    <li><a href="student-portal.html">child info</a></li>
+                    
+                    <li><a href="newsletter.html">Newsletter</a></li>
+                    <li><a href="extracurricular.html">Extracurricular</a></li>
+                    <li><a href="contact.html">contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <nav class="navbara">
+            <img src="photo/logo.png">
+        </nav>
+    </header>
+
+    <header>
+        <h1>School Events Calendar</h1>
+    </header>
+
+    <section>
+        <h2>Upcoming School Events</h2>
+        <button class="calendar-btn" onclick="toggleCalendar()">View Full Calendar</button>
+        
+        <div id="events-list">
+
+            <h3>Academic Events</h3>
+            <ul class="event-list">
+                <li><strong>First Day of School</strong> - September 1, 2025</li>
+                <li><strong>Parent-Teacher Conferences</strong> - October 10, 2025</li>
+                <li><strong>End-of-Term Exams</strong> - December 1-10, 2025</li>
+                <li><strong>Graduation Ceremony</strong> - May 25, 2025</li>
+                <li><strong>Orientation for New Students</strong> - August 25, 2025</li>
+            </ul>
+
+            <h3>Sports and Competitions</h3>
+            <ul class="event-list">
+                <li><strong>sports day</strong> - March 15-20, 2025</li>
+            </ul>
+
+            <h3>Special Recognition Days</h3>
+            <ul class="event-list">
+                <li><strong>independence day</strong> - june 3rd, 2025</li>
+                <li><strong>Christmas</strong> - December 25, 2025</li>
+            </ul>
+        </div>
+
+        <div id="calendar" style="display:none;">
+            <h3>Full Calendar</h3>
+            <table class="calendar">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample calendar month (e.g., October 2025) -->
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                    </tr>
+                    <!-- Add more weeks as needed -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <!-- Social Media Links -->
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+    
+            <!-- Quick Navigation Links -->
+            <div class="footer-nav">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Programs</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@school.com</p>
+                <p>Phone: +256 752593003</p>
+                <p>Address: kamuli-kireka, Uganda</p>
+            </div>
+    
+            <!-- Legal Links -->
+            <div class="footer-legal">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Newsletter Signup -->
+        <div class="footer-newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form action="#" method="POST">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    
+        <!-- Language Selector -->
+        <div id="google_translate_element" class="footer-language"></div>
+
+    
+        <!-- Back to Top Button -->
+        <div class="footer-back-to-top">
+            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to Top</button>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            <p>&copy; 2024 School Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+
+    <script>
+        function toggleCalendar() {
+            var calendar = document.getElementById('calendar');
+            var eventsList = document.getElementById('events-list');
+            if (calendar.style.display === "none") {
+                calendar.style.display = "block";
+                eventsList.style.display = "none";
+            } else {
+                calendar.style.display = "none";
+                eventsList.style.display = "block";
+            }
+        }
+    </script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              
+            }, 'google_translate_element');
+          }
+          const script = document.createElement('script');
+          script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+          document.head.appendChild(script);
+
+        // Toggle the mobile menu when the button is clicked
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.navba').classList.toggle('active');
+        });
+        
+                
+        </script>
+</body>
+</html>

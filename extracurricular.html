@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extracurricular Activities - School Website</title>
+    <style>
+        /* General Reset */
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #ffffff;
+            color: #333;
+        }
+    
+        header, footer {
+            text-align: center;
+            color: white;
+            padding: 0vw;
+        }
+        .navbar1 img {
+            width: 100vw;
+            margin-top: -1vw;
+            margin-left: -2vw;
+            display: flex;
+            height: 19vw;
+        }
+        .navbara {
+            width: 100%;
+            justify-content: center;
+            display: none;
+        }
+        .navbara img {
+            width: 30vw;
+            justify-content: center;
+            position: relative;
+            margin-left: -1vw;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.2vw 0;
+            text-align: center;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin: 0.2VW;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1vw 1vw;
+            display: block;
+            background-color: #FFA500;
+            border-radius: 1vw;
+            font-size: 1vw;
+            width: 7.5vw;
+        }
+        
+        nav ul li a:hover {
+            background-color: #3498db;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .navba {
+            display: flex;
+            position: absolute;
+            width: 35vw;
+            margin-top: -15vw;
+        }
+        .navbar2 {
+        display: flex;
+        position: absolute;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: -0.5vw;
+        }
+        .navbar3 img {
+        width: 15vw;
+        margin-top: -3vw;
+        margin-left: 41vw;
+        }
+        .navbar4 {
+        position: absolute;
+        justify-content: space-between;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: 56vw;
+        }
+        
+        header {
+        text-align: center;
+        color: white;
+        padding: 1vw;
+        }
+        
+        header h1 {
+        color: #ffffff;
+        background-color: #1abc9c;
+        margin-top: -6vw;
+        padding: 1vw 1vw;
+        font-size: 3vw;
+        }
+        
+        
+        /* Ensure button stays on top */
+        .menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color: rgb(241, 107, 5)e;
+            cursor: pointer;
+            z-index: 1000; /* Ensure button stays on top */
+            display: none; /* Hidden by default on larger screens */
+        }
+        
+        /* Responsive design for small screens */
+        @media (max-width: 740px) {
+            .navba {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Hidden by default */
+                height: 100vw;
+                width: 40vw;
+                background-color: #2c3e50;
+                transition: right 0.3s ease;
+                z-index: 999; /* Menu below button */
+                flex-direction: column;
+                display: inline;
+            }
+            .navbar1 img {
+                width: 100%;
+                margin-top: -2;
+                display: none;
+                height: 19vw;
+            }
+            .navbara {
+                display: flex;
+            }
+        
+            .navba.active {
+                right: 0; /* Slide into view when active */
+            }
+        
+            .navbar2 {
+                width: 42vw;
+                margin-top: 25vw;
+                }
+        
+            .navbar4 {
+                margin-top: 60vw;
+                margin-left: 0vw;
+                }
+            nav ul li a {
+                font-size: 3vw;
+                width: 30vw;
+                text-align: center;
+                color: white;
+                text-decoration: none;
+                margin: 1vw 1vw;
+            }
+        
+            nav ul li a:hover {
+                background-color: #3498db;
+            }
+        
+            /* Hide the school logo on small screens */
+            .navbar3 {
+                display: none;
+            }
+        
+            /* Show the toggle button on small screens */
+            .menu-toggle {
+                display: block;
+            }
+            header h1 {
+                margin-top: 2vw;
+            }
+            
+        }
+        
+        /* Keep the logo visible for screens larger than 540px */
+        @media (min-width: 740px) {
+            .navbara img {
+                display: block;
+            }
+            .navbar3 {
+                display: block;
+            }
+        }
+        
+        section {
+            margin: 20px auto;
+            width: 80%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .gallery img {
+            width: 30%;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .faq {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #232F3E;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 5vw 2vw;
+            text-align: center;
+
+        }
+        
+        footer .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2vw;
+            margin: 0 auto;
+        }
+        
+        footer .footer-container div {
+            display: flex;
+            flex-direction: column;
+            gap: 1vw;
+        }
+        
+        footer h3 {
+            font-size: 2.5vw;
+            margin-bottom: 1vw;
+            color: #F39C12;
+            text-transform: uppercase;
+        }
+        
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        footer ul li a {
+            color: #BDC3C7;
+            font-size: 1.5vw;
+            text-decoration: none;
+            padding: 2vw 0;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        footer ul li a:hover {
+            color: #F39C12;
+        }
+        
+        footer .footer-social a {
+            color: #BDC3C7;
+            font-size: 2vw;
+            margin-right: 2vw;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        footer .footer-social a:hover {
+            color: #F39C12;
+        }
+        
+        footer .footer-newsletter input,
+        footer .footer-newsletter button {
+            padding: 1vw 1vw;
+            border-radius: 1vw;
+            border: none;
+            font-size: 2vw;
+            margin-top: 1vw;
+        }
+        
+        footer .footer-newsletter input {
+            width: 100%;
+            margin-bottom: 1vw;
+            background-color: #34495E;
+            color: #fff;
+            border: 1vw solid #7F8C8D;
+        }
+        
+        footer .footer-newsletter button {
+            background-color: #F39C12;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        footer .footer-newsletter button:hover {
+            background-color: #E67E22;
+        }
+        
+        footer .footer-language select {
+            padding: 1vw;
+            border-radius: 1vw;
+            border: 1vw solid #7F8C8D;
+            background-color: #34495E;
+            color: #fff;
+            font-size: 1.5vw;
+            margin-top: 1vw;
+            width: 100%;
+        }
+        
+        footer .footer-back-to-top button {
+            padding: 1vw 2vw;
+            background-color: #F39C12;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2vw;
+            font-size: 2vw;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 1vw;
+        }
+        
+        footer .footer-back-to-top button:hover {
+            background-color: #E67E22;
+        }
+        
+        footer .footer-copyright {
+            margin-top: 2vw;
+            font-size: 2vw;
+            color: #BDC3C7;
+            text-align: center;
+        }
+        
+        footer .footer-copyright a {
+            color: #BDC3C7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        footer .footer-copyright a:hover {
+            color: #F39C12;
+        }
+        
+        @media (max-width: 768px) {
+            footer .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2vw;
+            }
+        
+            footer .footer-newsletter input {
+                width: 100%;
+            }
+        
+            footer .footer-back-to-top button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            footer .footer-container {
+                grid-template-columns: 1fr;
+            }
+        
+            footer .footer-newsletter input,
+            footer .footer-newsletter button,
+            footer .footer-language select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle">&#9776;</button> <!-- Menu button (hamburger icon) -->
+        <nav class="navbar1">
+            <img src="photo/HEADER.png" alt="Header Image">
+        </nav>
+
+        <div class="navba">
+            <!-- Navigation Bar -->
+            <nav class="navbar2">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                </ul>
+            </nav>
+            <nav class="navbar3">
+                <ul class="navbar3">
+                    <li><img src="photo/logo.png" alt="School Logo"></li>
+                </ul>
+            </nav>
+            <nav class="navbar4">
+                <ul>
+                    <li><a href="student-portal.html">Student Portal</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="newsletter.html">Newsletter</a></li>
+                    <li><a href="contact.html">contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <nav class="navbara">
+            <img src="photo/logo.png">
+        </nav>
+    </header>
+
+    <header>
+        <h1>Extracurricular Activities</h1>
+    </header>
+
+    <section>
+        <h2>Welcome to Our Extracurricular Activities</h2>
+        <p>At our school, we believe that extracurricular activities are key to developing well-rounded individuals. Whether you're interested in sports, arts, social causes, or academics, there's something for everyone.</p>
+
+        <p class="quote">"Extracurricular activities help children develop new skills, build friendships, and gain valuable experiences outside of the classroom." - Head teacher</p>
+
+        <h3>Available Activities</h3>
+        <h4>Sports</h4>
+        <ul>
+            <li><strong>Football</strong> - Join our competitive football team or enjoy recreational play.</li>
+            <li><strong>Swimming</strong> - Training sessions.</li>
+            <li><strong>Athletics</strong> - Running, track, and field events for all skill levels.</li>
+        </ul>
+
+        <h4>Leadership Programs</h4>
+        <ul>
+            <li><strong>Child leadership</strong> - Election of leaders.</li>
+            <li><strong>Peer Mentoring</strong> - Help new students transition to school life.</li>
+        </ul>
+
+        <h3>Benefits of Participating</h3>
+        <p>Extracurricular activities provide numerous benefits:</p>
+        <ul>
+            <li>Improves time management and organizational skills.</li>
+            <li>Helps build confidence and self-esteem.</li>
+            <li>Provides opportunities to develop leadership and teamwork skills.</li>
+            <li>Expands your social circle and fosters friendships.</li>
+            <li>Enhances academic performance by offering balance and relaxation.</li>
+        </ul>
+
+        <h3>Upcoming Events</h3>
+        <div class="calendar">
+            <p><strong>Sports Day</strong> </p>
+            <p><strong>Talent Show</strong> </p>
+        </div>
+
+        <h3>Gallery</h3>
+        <div class="gallery">
+            <img src="photo/1.png" alt="Event Image 1">
+            <img src="photo/2.png" alt="Event Image 2">
+            <img src="photo/3.png" alt="Event Image 3">
+        </div>
+
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq">
+            <p><strong>Are extracurricular activities mandatory?</strong> No, they are optional, but highly encouraged to enhance your child's experience.</p>
+        </div>
+
+        <h3>Contact Details</h3>
+        <div class="contact-info">
+            <p>If you have any questions about extracurricular activities, please contact:</p>
+            <p><strong>Email:</strong> extracurricular@ourschool.com</p>
+            <p><strong>Phone:</strong> +123 456 7890</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <!-- Social Media Links -->
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+    
+            <!-- Quick Navigation Links -->
+            <div class="footer-nav">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Programs</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@school.com</p>
+                <p>Phone: +256 752593003</p>
+                <p>Address: kamuli-kireka, Uganda</p>
+            </div>
+    
+            <!-- Legal Links -->
+            <div class="footer-legal">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Newsletter Signup -->
+        <div class="footer-newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form action="#" method="POST">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    
+        <!-- Language Selector -->
+        <div id="google_translate_element" class="footer-language"></div>
+
+    
+        <!-- Back to Top Button -->
+        <div class="footer-back-to-top">
+            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to Top</button>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            <p>&copy; 2024 School Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+              pageLanguage: 'en',
+              
+            }, 'google_translate_element');
+          }
+          const script = document.createElement('script');
+          script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+          document.head.appendChild(script);
+
+        // Toggle the mobile menu when the button is clicked
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.navba').classList.toggle('active');
+        });
+        
+                
+        </script>
+</body>
+</html>

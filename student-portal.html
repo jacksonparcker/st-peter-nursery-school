@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - School Website</title>
+    <style>
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #ffffff;
+            color: #333;
+        }
+        header, footer {
+            text-align: center;
+            color: white;
+            padding: 0vw;
+        }
+        .navbar1 img {
+            width: 100vw;
+            margin-top: -1vw;
+            margin-left: -2vw;
+            display: flex;
+            height: 19vw;
+        }
+        .navbara {
+            width: 100%;
+            justify-content: center;
+            display: none;
+        }
+        .navbara img {
+            width: 30vw;
+            justify-content: center;
+            position: relative;
+            margin-left: -1vw;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.2vw 0;
+            text-align: center;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin: 0.2VW;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1vw 1vw;
+            display: block;
+            background-color: #FFA500;
+            border-radius: 1vw;
+            font-size: 1vw;
+            width: 7.5vw;
+        }
+        
+        nav ul li a:hover {
+            background-color: #3498db;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .navba {
+            display: flex;
+            position: absolute;
+            width: 35vw;
+            margin-top: -15vw;
+        }
+        .navbar2 {
+        display: flex;
+        position: absolute;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: -0.5vw;
+        }
+        .navbar3 img {
+        width: 15vw;
+        margin-top: -3vw;
+        margin-left: 41vw;
+        }
+        .navbar4 {
+        position: absolute;
+        justify-content: space-between;
+        width: 42vw;
+        margin-top: 1.6vw;
+        margin-left: 56vw;
+        }
+        
+        header {
+        text-align: center;
+        color: white;
+        padding: 1vw;
+        }
+        
+        header h1 {
+        color: #ffffff;
+        background-color: #1abc9c;
+        margin-top: -6vw;
+        padding: 1vw 1vw;
+        font-size: 3vw;
+        }
+        
+        
+        /* Ensure button stays on top */
+        .menu-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+            background-color: transparent;
+            border: none;
+            color: rgb(241, 107, 5);
+            cursor: pointer;
+            z-index: 1000; /* Ensure button stays on top */
+            display: none; /* Hidden by default on larger screens */
+        }
+        
+        /* Responsive design for small screens */
+        @media (max-width: 740px) {
+            .navba {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Hidden by default */
+                height: 100vw;
+                width: 40vw;
+                background-color: #2c3e50;
+                transition: right 0.3s ease;
+                z-index: 999; /* Menu below button */
+                flex-direction: column;
+                display: inline;
+            }
+            .navbar1 img {
+                width: 100%;
+                margin-top: -2;
+                display: none;
+                height: 19vw;
+            }
+            .navbara {
+                display: flex;
+            }
+        
+            .navba.active {
+                right: 0; /* Slide into view when active */
+            }
+        
+            .navbar2 {
+                width: 42vw;
+                margin-top: 25vw;
+                }
+        
+            .navbar4 {
+                margin-top: 60vw;
+                margin-left: 0vw;
+                }
+            nav ul li a {
+                font-size: 3vw;
+                width: 30vw;
+                text-align: center;
+                color: white;
+                text-decoration: none;
+                margin: 1vw 1vw;
+            }
+        
+            nav ul li a:hover {
+                background-color: #3498db;
+            }
+        
+            /* Hide the school logo on small screens */
+            .navbar3 {
+                display: none;
+            }
+        
+            /* Show the toggle button on small screens */
+            .menu-toggle {
+                display: block;
+            }
+            header h1 {
+                margin-top: 2vw;
+            }
+            
+        }
+        
+        /* Keep the logo visible for screens larger than 540px */
+        @media (min-width: 740px) {
+            .navbara img {
+                display: block;
+            }
+            .navbar3 {
+                display: block;
+            }
+        }
+        
+        .portal-main {
+            text-align: center;
+            padding: 50px;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-container {
+            margin-top: 30px;
+        }
+
+        .login-container label {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login-container input[type="submit"] {
+            background-color: #0073e6;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #005bb5;
+        }
+
+        .announcements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .announcements ul li {
+            background-color: #f8f8f8;
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #0073e6;
+        }
+
+        .quick-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quick-links ul li {
+            margin: 10px 0;
+        }
+
+        .quick-links ul li a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .quick-links ul li a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #232F3E;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 5vw 2vw;
+            text-align: center;
+
+        }
+        
+        footer .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2vw;
+            margin: 0 auto;
+        }
+        
+        footer .footer-container div {
+            display: flex;
+            flex-direction: column;
+            gap: 1vw;
+        }
+        
+        footer h3 {
+            font-size: 2.5vw;
+            margin-bottom: 1vw;
+            color: #F39C12;
+            text-transform: uppercase;
+        }
+        
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        footer ul li a {
+            color: #BDC3C7;
+            font-size: 1.5vw;
+            text-decoration: none;
+            padding: 2vw 0;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        footer ul li a:hover {
+            color: #F39C12;
+        }
+        
+        footer .footer-social a {
+            color: #BDC3C7;
+            font-size: 2vw;
+            margin-right: 2vw;
+            transition: color 0.3s ease-in-out;
+        }
+        
+        footer .footer-social a:hover {
+            color: #F39C12;
+        }
+        
+        footer .footer-newsletter input,
+        footer .footer-newsletter button {
+            padding: 1vw 1vw;
+            border-radius: 1vw;
+            border: none;
+            font-size: 2vw;
+            margin-top: 1vw;
+        }
+        
+        footer .footer-newsletter input {
+            width: 100%;
+            margin-bottom: 1vw;
+            background-color: #34495E;
+            color: #fff;
+            border: 1vw solid #7F8C8D;
+        }
+        
+        footer .footer-newsletter button {
+            background-color: #F39C12;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        footer .footer-newsletter button:hover {
+            background-color: #E67E22;
+        }
+        
+        footer .footer-language select {
+            padding: 1vw;
+            border-radius: 1vw;
+            border: 1vw solid #7F8C8D;
+            background-color: #34495E;
+            color: #fff;
+            font-size: 1.5vw;
+            margin-top: 1vw;
+            width: 100%;
+        }
+        
+        footer .footer-back-to-top button {
+            padding: 1vw 2vw;
+            background-color: #F39C12;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 2vw;
+            font-size: 2vw;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 1vw;
+        }
+        
+        footer .footer-back-to-top button:hover {
+            background-color: #E67E22;
+        }
+        
+        footer .footer-copyright {
+            margin-top: 2vw;
+            font-size: 2vw;
+            color: #BDC3C7;
+            text-align: center;
+        }
+        
+        footer .footer-copyright a {
+            color: #BDC3C7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        footer .footer-copyright a:hover {
+            color: #F39C12;
+        }
+        
+        @media (max-width: 768px) {
+            footer .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2vw;
+            }
+        
+            footer .footer-newsletter input {
+                width: 100%;
+            }
+        
+            footer .footer-back-to-top button {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            footer .footer-container {
+                grid-template-columns: 1fr;
+            }
+        
+            footer .footer-newsletter input,
+            footer .footer-newsletter button,
+            footer .footer-language select {
+                width: 100%;
+            }
+        }
+        h1, h2, h3 {
+            font-family: 'Helvetica Neue', sans-serif;
+          }
+          
+      
+          /* Sidebar Styles */
+          .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 240px;
+            height: 100%;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+      
+          .sidebar h1 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+          }
+      
+          .sidebar button {
+            width: 100%;
+            padding: 15px;
+            background-color: #34495e;
+            color: white;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+          }
+      
+          .sidebar button:hover {
+            background-color: #1abc9c;
+          }
+      
+          /* Main Content Styles */
+          #main-content {
+            margin-left: 240px;
+            padding: 30px;
+            width: calc(100% - 240px);
+            overflow-y: auto;
+          }
+      
+          /* Profile Section */
+          #profile-section {
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+          }
+      
+          #profile-section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+          }
+      
+          .profile-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+          }
+      
+          .profile-info div {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          }
+      
+          .profile-info label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+          }
+      
+          .profile-info input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fafafa;
+          }
+      
+          .profile-info input:focus {
+            border-color: #1abc9c;
+            outline: none;
+          }
+      
+          .profile-info button {
+            padding: 10px 15px;
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+          }
+      
+          .profile-info button:hover {
+            background-color: #16a085;
+          }
+      
+          /* Responsive Design */
+          @media (max-width: 768px) {
+            .sidebar {
+              width: 200px;
+            }
+      
+            #main-content {
+              margin-left: 200px;
+            }
+      
+            .profile-info {
+              grid-template-columns: 1fr;
+            }
+      
+            .sidebar button {
+              font-size: 14px;
+              padding: 12px;
+            }
+      
+            input[type="text"], input[type="email"], input[type="password"], button[type="submit"] {
+              width: 100%;
+            }
+          }
+        /* Sidebar Navigation Styles */
+        .sidebar {
+          width: 250px;
+          position: fixed;
+          top: 0;
+          left: 0;
+          background-color: #2c3e50;
+          color: white;
+          padding-top: 20px;
+          height: 100%;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar h1 {
+          color: #ecf0f1;
+          text-align: center;
+          font-size: 22px;
+          margin-bottom: 30px;
+        }
+        
+        .sidebar button {
+          width: 100%;
+          padding: 15px;
+          background-color: #34495e;
+          color: white;
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+          text-align: left;
+          margin-bottom: 10px;
+          transition: background-color 0.3s;
+        }
+        
+        .sidebar button:hover {
+          background-color: #1abc9c;
+        }
+        
+        /* Main Content Styles */
+        #main-content {
+          margin-left: 250px;
+          padding: 20px;
+        }
+        
+        /* Content Section Styles */
+        .content-section {
+          display: none;
+          margin-bottom: 30px;
+        }
+        
+        /* Table Styles */
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+        }
+        
+        th, td {
+          padding: 12px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+          background-color: #2c3e50;
+          color: white;
+        }
+        
+        tr:hover {
+          background-color: #ecf0f1;
+        }
+        
+        /* Profile Section Styles */
+        .profile-info {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+        
+        .profile-info div {
+          flex: 1;
+        }
+        
+        label {
+          font-weight: bold;
+          display: block;
+          margin-top: 10px;
+        }
+        
+        input {
+          width: 100%;
+          padding: 10px;
+          margin-top: 5px;
+          margin-bottom: 15px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #fff;
+        }
+        
+        input:disabled {
+          background-color: #e1e1e1;
+        }
+        
+        button {
+          padding: 10px 20px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        
+        button:hover {
+          background-color: #2980b9;
+        }
+        
+        /* Alerts and Notifications */
+        .alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+          margin-bottom: 15px;
+          text-align: center;
+          border-radius: 5px;
+        }
+        
+        .alert.success {
+          background-color: #4CAF50;
+        }
+        
+        .alert.warning {
+          background-color: #ff9800;
+        }
+        
+        /* Login Section Styles */
+        #login-section {
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          
+          height: 100vw;
+          background-color: #ecf0f1;
+        }
+        
+        #login-container {
+          background-color: white;
+          padding: 40px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          width: 90%;
+        }
+        
+        #login-container h2 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        
+        #login-form input {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        
+        #login-form button {
+          width: 100%;
+          padding: 12px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        
+        #login-form button:hover {
+          background-color: #2980b9;
+        }
+        
+        #login-form p {
+          text-align: center;
+          margin-top: 10px;
+        }
+        
+        #login-form a {
+          color: #3498db;
+          text-decoration: none;
+        }
+        
+        #login-form a:hover {
+          text-decoration: underline;
+        }
+        
+        /* Advertisement Section Styles */
+        #advertisement-section {
+          display: flex;
+          justify-content: center;
+          background-color: #ff9800;
+          color: white;
+          padding: 20px;
+          border-radius: 8px;
+          justify-content: space-between;
+          align-items: center;
+          width: 100vw;
+        }
+        
+        #advertisement-section i {
+          font-size: 24px;
+        }
+        
+        #advertisement-section div {
+          padding-left: 10px;
+        }
+        
+        #advertisement-section a {
+          color: white;
+          text-decoration: none;
+        }
+        
+        #advertisement-section a:hover {
+          text-decoration: underline;
+        }
+        
+        /* Dashboard Section */
+        #dashboard {
+          display: block;
+        }
+        
+        #dashboard h2 {
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+        
+        #dashboard ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        
+        #dashboard li {
+          margin: 10px 0;
+        }
+        
+        /* Course Schedule Section */
+        #courseSchedule {
+          display: block;
+        }
+        
+        #courseSchedule table {
+          width: 100%;
+          margin-top: 20px;
+          border-collapse: collapse;
+        }
+        
+        #courseSchedule th,
+        #courseSchedule td {
+          padding: 12px;
+          text-align: left;
+          border: 1px solid #ddd;
+        }
+        
+        #courseSchedule th {
+          background-color: #3498db;
+          color: white;
+        }
+        
+        #courseSchedule tr:nth-child(even) {
+          background-color: #ecf0f1;
+        }
+        
+        /* Grades Section */
+        #grades {
+          display: block;
+        }
+        
+        #grades table {
+          width: 100%;
+          margin-top: 20px;
+          border-collapse: collapse;
+        }
+        
+        #grades th,
+        #grades td {
+          padding: 12px;
+          text-align: left;
+          border: 1px solid #ddd;
+        }
+        
+        #grades th {
+          background-color: #2c3e50;
+          color: white;
+        }
+        
+        #grades tr:hover {
+          background-color: #ecf0f1;
+        }
+        
+        /* Notifications Section */
+        #notifications {
+          display: block;
+        }
+        
+        #notifications ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        
+        #notifications li {
+          margin: 10px 0;
+        }
+        
+        /* Messages Section */
+        #messages {
+          display: block;
+        }
+        
+        #messages ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        
+        #messages li {
+          margin: 10px 0;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+          .sidebar {
+            width: 200px;
+          }
+        
+          #main-content {
+            margin-left: 200px;
+            justify-content: center;
+          }
+        
+          .profile-info {
+            flex-direction: column;
+          }
+        
+          #login-container {
+            width: 78vw;
+          }
+        
+          #advertisement-section {
+            width: 100%;
+          }
+        }
+        
+    
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-toggle">&#9776;</button> <!-- Menu button (hamburger icon) -->
+        <nav class="navbar1" id="navbar1">
+            <img src="photo/HEADER.png" alt="Header Image">
+        </nav>
+
+        <div class="navba" id="navba">
+            <!-- Navigation Bar -->
+            <nav class="navbar2">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                </ul>
+            </nav>
+            <nav class="navbar3">
+                <ul class="navbar3">
+                    <li><img src="photo/logo.png" alt="School Logo"></li>
+                </ul>
+            </nav>
+            <nav class="navbar4">
+                <ul>
+                    
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="newsletter.html">Newsletter</a></li>
+                    <li><a href="extracurricular.html">Extracurricular</a></li>
+                    <li><a href="contact.html">contact us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <nav class="navbara">
+            <img src="photo/logo.png">
+        </nav>
+    </header>
+
+    <header>
+        <h1>childs Information</h1>
+    </header>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="navbar" style="display: none;">
+    <h1>Welcome, John Doe</h1>
+    <button onclick="showDashboard()">Dashboard</button>
+    <button onclick="showCourseSchedule()">Course Schedule</button>
+    <button onclick="showProfile()">Profile</button>
+    <button onclick="showGrades()">Grades</button>
+    <button onclick="showNotifications()">Notifications</button>
+    <button onclick="showMessages()">Messages</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="content-section" style="display: none;">
+      <h2>Dashboard</h2>
+      <p>Welcome to your personalized Dashboard, John Doe!</p>
+      <p>Here, you can manage your academic progress, view your schedule, check your grades, and access notifications.</p>
+      <ul>
+        <li><strong>Upcoming Deadlines:</strong> Submit your assignment on "Engineering Principles" by Friday.</li>
+        <li><strong>Recent Updates:</strong> New courses are now available for next semester. Check the course catalog!</li>
+        <li><strong>Latest Messages:</strong> You've received new messages from your professors regarding upcoming projects.</li>
+      </ul>
+    </div>
+
+    <!-- Course Schedule Section -->
+    <div id="courseSchedule" class="content-section" style="display: none;">
+      <h2>Course Schedule</h2>
+      <table border="1" cellpadding="10">
+        <thead>
+          <tr>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Days</th>
+            <th>Time</th>
+            <th>Instructor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ENG101</td>
+            <td>Engineering Principles</td>
+            <td>Mon, Wed, Fri</td>
+            <td>9:00 AM - 11:00 AM</td>
+            <td>Prof. Smith</td>
+          </tr>
+          <tr>
+            <td>CS202</td>
+            <td>Computer Science 2</td>
+            <td>Tue, Thu</td>
+            <td>10:00 AM - 12:00 PM</td>
+            <td>Dr. Johnson</td>
+          </tr>
+          <tr>
+            <td>MAT301</td>
+            <td>Mathematics for Engineers</td>
+            <td>Mon, Wed</td>
+            <td>2:00 PM - 4:00 PM</td>
+            <td>Prof. Davis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Profile Section -->
+    <div id="profile" class="content-section" style="display: none;">
+      <h2>Profile</h2>
+      <div class="profile-info">
+        <div>
+          <label for="profile-name">Full Name</label>
+          <input type="text" id="profile-name" placeholder="John Doe" disabled>
+
+          <label for="profile-email">Email</label>
+          <input type="email" id="profile-email" placeholder="johndoe@email.com" disabled>
+
+          <label for="profile-phone">Phone</label>
+          <input type="text" id="profile-phone" placeholder="+1234567890" disabled>
+
+          <label for="profile-other-info">Other Info</label>
+          <input type="text" id="profile-other-info" placeholder="Member of the Engineering Society" disabled>
+        </div>
+
+        <div>
+          <label for="profile-gender">Gender</label>
+          <input type="text" id="profile-gender" placeholder="Male" disabled>
+
+          <label for="profile-course">Course</label>
+          <input type="text" id="profile-course" placeholder="Bachelor of Civil Engineering" disabled>
+
+          <label for="profile-year">Year</label>
+          <input type="text" id="profile-year" placeholder="2nd Year" disabled>
+
+          <label for="profile-id">Student ID</label>
+          <input type="text" id="profile-id" placeholder="123456" disabled>
+        </div>
+      </div>
+      
+      <button onclick="enableProfileEditing()">Edit Profile</button>
+    </div>
+
+    <!-- Grades Section -->
+    <div id="grades" class="content-section" style="display: none;">
+      <h2>Grades</h2>
+      <table border="1" cellpadding="10">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Grade</th>
+            <th>Credits</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Engineering Principles</td>
+            <td>A</td>
+            <td>4</td>
+            <td>Completed</td>
+          </tr>
+          <tr>
+            <td>Computer Science 2</td>
+            <td>B+</td>
+            <td>3</td>
+            <td>Completed</td>
+          </tr>
+          <tr>
+            <td>Mathematics for Engineers</td>
+            <td>A-</td>
+            <td>4</td>
+            <td>Completed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Notifications Section -->
+    <div id="notifications" class="content-section" style="display: none;">
+      <h2>Notifications</h2>
+      <ul>
+        <li><strong>New Assignment:</strong> Submit your "Advanced Mechanics" assignment by next Monday.</li>
+        <li><strong>Exam Dates:</strong> Mid-term exams scheduled for next week. Check the exam timetable for details.</li>
+        <li><strong>Library Notice:</strong> New books available in the Engineering section of the library.</li>
+      </ul>
+    </div>
+
+    <!-- Messages Section -->
+    <div id="messages" class="content-section" style="display: none;">
+      <h2>Messages</h2>
+      <ul>
+        <li><strong>Prof. Smith:</strong> Reminder about the upcoming lecture on "Building Materials."</li>
+        <li><strong>Dr. Johnson:</strong> Please check your grades for the recent Computer Science quiz.</li>
+        <li><strong>Student Council:</strong> Join us for the annual Engineering Society event next week!</li>
+      </ul>
+    </div>
+
+  </div>
+  <!-- Login Section -->
+  <div id="login-section" style="display: block;">
+    <div id="login-container">
+      <h2>Child Login</h2>
+      <form id="login-form">
+        <input type="text" id="student-id" placeholder="Student ID" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+      </form>
+    </div>
+
+    <!-- Important Announcements -->
+    <section class="announcements">
+        <h3>Recent Announcements</h3>
+        <ul>
+            <li>The school is to be opened on 3r september 2025.</li>
+            <li>Registration is on going.</li>
+            <li>Ee shall be hosting a general meeting at beginning of the term!</li>
+        </ul>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+            <li><a href="academics.html">School Programs</a></li>
+            <li><a href="newsletter.html">news letter</a></li>
+            <li><a href="learnmore.html">learn more</a></li>
+            <li><a href="apply.html">Admission Forms</a></li>
+        </ul>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Social Media Links -->
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+    
+            <!-- Quick Navigation Links -->
+            <div class="footer-nav">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Programs</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="footer-contact">
+              <h3>Contact Us</h3>
+              <p>Email: info@school.com</p>
+              <p>Phone: +256 752593003</p>
+              <p>Address: kamuli-kireka, Uganda</p>
+          </div>
+    
+            <!-- Legal Links -->
+            <div class="footer-legal">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Newsletter Signup -->
+        <div class="footer-newsletter">
+            <h3>Subscribe to Our Newsletter</h3>
+            <form action="#" method="POST">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    
+        <!-- Language Selector -->
+        <div id="google_translate_element" class="footer-language"></div>
+
+    
+        <!-- Back to Top Button -->
+        <div class="footer-back-to-top">
+            <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Back to Top</button>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-copyright">
+            <p>&copy; 2024 School Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+
+    <!-- JavaScript for Logout -->
+    <script>
+        function logout() {
+            // Simulating logout functionality
+            alert("You have logged out successfully.");
+            window.location.href = 'index.html';  // Redirect to home page after logout
+        }
+    </script>
+      <!-- JavaScript Code -->
+  <script>
+    // Login Functionality
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('student-id').value.trim();
+      const password = document.getElementById('password').value.trim();
+      
+      if (!username || !password) {
+        alert('Please fill in both fields!');
+        return;
+      }
+
+      fetch('https://sheetdb.io/api/v1/iig5xi29z4ux6') // Replace with your SheetDB URL
+        .then(response => response.json())
+        .then(data => {
+          const user = data.find(user => user['Student ID'] === username);
+          if (user && user.Password.toLowerCase() === password.toLowerCase()) {
+            // Show the sidebar and content after successful login
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('navba').style.display = 'none';
+            document.getElementById('navbar1').style.display = 'none';
+            document.getElementById('navbar').style.display = 'block';
+            document.getElementById('main-content').style.display = 'block';
+            document.querySelector('.sidebar h1').textContent = `Welcome, ${user.Name}`;
+
+            // Populate profile info
+            document.getElementById('profile-name').value = user.Name;
+            document.getElementById('profile-email').value = user.Email;
+            document.getElementById('profile-phone').value = user.Phone;
+            document.getElementById('profile-gender').value = user.Gender;
+            document.getElementById('profile-course').value = user.Course;
+            document.getElementById('profile-year').value = user.Year;
+            document.getElementById('profile-id').value = user['Student ID'];
+            document.getElementById('profile-other-info').value = user['Other Info'];
+          } else {
+            alert('Incorrect Student ID or Password!');
+          }
+        })
+        .catch(error => console.error('Error fetching student data:', error));
+    });
+
+    // Enable profile editing
+    function enableProfileEditing() {
+      document.getElementById('profile-name').disabled = false;
+      document.getElementById('profile-email').disabled = false;
+      document.getElementById('profile-phone').disabled = false;
+      document.getElementById('profile-gender').disabled = false;
+      document.getElementById('profile-course').disabled = false;
+      document.getElementById('profile-year').disabled = false;
+      document.getElementById('profile-id').disabled = false;
+      document.getElementById('profile-other-info').disabled = false;
+    }
+
+  </script>
+  <script>
+    // Sidebar Navigation Functions
+    function showDashboard() {
+      displaySection('dashboard');
+    }
+
+    function showCourseSchedule() {
+      displaySection('courseSchedule');
+    }
+
+    function showProfile() {
+      displaySection('profile');
+    }
+
+    function showGrades() {
+      displaySection('grades');
+    }
+
+    function showNotifications() {
+      displaySection('notifications');
+    }
+
+    function showMessages() {
+      displaySection('messages');
+    }
+
+    function logout() {
+      alert('Logging Out...');
+      window.location.reload();
+    }
+
+    // Function to display specific section based on the button clicked
+    function displaySection(section) {
+      document.querySelectorAll('.content-section').forEach(sec => {
+        sec.style.display = 'none';
+      });
+      document.getElementById(section).style.display = 'block';
+    }
+  </script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          
+        }, 'google_translate_element');
+      }
+      const script = document.createElement('script');
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.head.appendChild(script);
+
+        // Toggle the mobile menu when the button is clicked
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.navba').classList.toggle('active');
+        });
+        
+                
+        </script>
+</body>
+</html>
